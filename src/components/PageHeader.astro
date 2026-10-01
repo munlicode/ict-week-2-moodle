@@ -7,44 +7,59 @@ interface Props {
 }
 
 const {
-  pageTitle = "Site home",
+  pageTitle = "LMS",
   breadcrumbs = [{ label: "Home", href: "/", current: true }],
 } = Astro.props;
 ---
 
 <header id="page-header" class="row" data-for="page-heading">
-    <div class="col-12 pt-3 pb-3">
-        <div class="card">
-            <div class="card-body">
-                <div class="d-flex align-items-center">
-                    <div class="me-auto">
-                        <div class="page-context-header d-flex flex-wrap align-items-center mb-2">
-                            <div class="page-header-headings">
-                                <h1 class="h2 mb-0">{pageTitle}</h1>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="header-actions-container flex-shrink-0" data-region="header-actions-container"></div>
-                </div>
-                <div class="d-flex flex-wrap">
-                    <div id="page-navbar">
-                        <nav aria-label="Breadcrumb">
-                            <ol class="breadcrumb">
-                                {breadcrumbs.map((crumb) => (
-                                    <li class="breadcrumb-item">
-                                        <a href={crumb.href} aria-current={crumb.current ? "page" : undefined}>
-                                            {crumb.label}
-                                        </a>
-                                    </li>
-                                ))}
-                            </ol>
-                        </nav>
-                    </div>
-                    <div class="ms-auto d-flex"></div>
-                    <div id="course-header"></div>
-                </div>
+  <div class="col-12 pt-3 pb-3">
+    <div class="card">
+      <div class="card-body">
+        <div class="d-flex align-items-center">
+          <div class="me-auto">
+            <div
+              class="page-context-header d-flex flex-wrap align-items-center mb-2"
+            >
+              <div class="page-header-headings">
+                <h1 class="h2 mb-0">{pageTitle}</h1>
+              </div>
             </div>
+          </div>
+          <div
+            class="header-actions-container flex-shrink-0"
+            data-region="header-actions-container"
+          >
+          </div>
         </div>
-        <div class="header-extras-container ms-auto" data-region="header-extras-container"></div>
+        <div class="d-flex flex-wrap">
+          <div id="page-navbar">
+            <nav aria-label="Breadcrumb">
+              <ol class="breadcrumb">
+                {
+                  breadcrumbs.map((crumb) => (
+                    <li class="breadcrumb-item">
+                      <a
+                        href={crumb.href}
+                        aria-current={crumb.current ? "page" : undefined}
+                      >
+                        {crumb.label}
+                      </a>
+                    </li>
+                  ))
+                }
+              </ol>
+            </nav>
+          </div>
+          <div class="ms-auto d-flex"></div>
+          <div id="course-header"></div>
+        </div>
+      </div>
     </div>
+    <div
+      class="header-extras-container ms-auto"
+      data-region="header-extras-container"
+    >
+    </div>
+  </div>
 </header>

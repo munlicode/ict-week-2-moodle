@@ -17,47 +17,60 @@ const {
 ---
 
 <footer id="page-footer" class="footer-dark bg-dark text-light">
-    <div class="container footer-dark-inner">
-        <div id="course-footer"></div>
+  <div class="container footer-dark-inner">
+    <div id="course-footer"></div>
 
-        <div class="pb-3">
-            <div class="footer-support-link">
-                <a href={`${siteUrl}/user/contactsitesupport.php`}>
-                    <i class="icon fa-regular fa-envelope fa-fw" aria-hidden="true"></i>
-                    Contact site support
-                </a>
-            </div>
-        </div>
-
-        <div class="logininfo">
-            You are logged in as{" "}
-            <a href={`${siteUrl}/user/profile.php?id=${userId}`}>{userName}</a>
-            {" "}(<a href={`${siteUrl}/login/logout.php?sesskey=${sesskey}`}>Log out</a>)
-        </div>
-
-        <div class="tool_usertours-resettourcontainer"></div>
-
-        <div class="sitelink">
-            <a title="Moodle" class="d-inline-block aalink" href="http://moodle.org/">
-                <img src={`${siteUrl}/theme/image.php/classic/core/1788154519/moodlelogo_grayhat`} alt="Moodle logo" />
-            </a>
-        </div>
-
-        <!-- Mobile custom menu (hidden on md+) -->
-        <nav class="nav navbar-nav d-md-none" aria-label="Custom menu">
-            <ul class="list-unstyled pt-3">
-                <li><a href="#" title="Language">English &#x200E;(en)&#x200F;</a></li>
-                <li>
-                    <ul class="list-unstyled ms-3">
-                        <li><a href={`${siteUrl}/?lang=en`} title="Language">English &#x200E;(en)&#x200F;</a></li>
-                        <li><a href={`${siteUrl}/?lang=ru`} title="Language">&#1056;&#1091;&#1089;&#1089;&#1082;&#1080;&#1081; &#x200E;(ru)&#x200F;</a></li>
-                    </ul>
-                </li>
-            </ul>
-        </nav>
-
-        <div class="tool_dataprivacy">
-            <a href={`${siteUrl}/admin/tool/dataprivacy/summary.php`}>Data retention summary</a>
-        </div>
+    <div class="pb-3">
+      <div class="footer-support-link">
+        <a href={`${siteUrl}/user/contactsitesupport.php`}>
+          <i class="icon fa-regular fa-envelope fa-fw" aria-hidden="true"></i>
+          Contact site support
+        </a>
+      </div>
     </div>
+
+    <div class="logininfo">
+      You are logged in as{" "}
+      <a href={`${siteUrl}/user/profile.php?id=${userId}`}>{userName}</a>
+      {" "}(<a href={`${siteUrl}/login/logout.php?sesskey=${sesskey}`}
+        >Log out</a
+      >)
+    </div>
+
+    <div class="tool_usertours-resettourcontainer"></div>
+
+    <div class="sitelink">
+      <a title="Moodle" class="d-inline-block aalink" href="http://moodle.org/">
+        <img src={`${siteUrl}/moodlelogo_grayhat.svg`} alt="Moodle logo" />
+      </a>
+    </div>
+
+    <!-- Mobile custom menu (hidden on md+) -->
+    <nav class="nav navbar-nav d-md-none" aria-label="Custom menu">
+      <ul class="list-unstyled pt-3">
+        <li><a href="#" title="Language">English &#x200E;(en)&#x200F;</a></li>
+        <li>
+          <ul class="list-unstyled ms-3">
+            <li>
+              <a href={`${siteUrl}/?lang=en`} title="Language"
+                >English &#x200E;(en)&#x200F;</a
+              >
+            </li>
+            <li>
+              <a href={`${siteUrl}/?lang=ru`} title="Language"
+                >&#1056;&#1091;&#1089;&#1089;&#1082;&#1080;&#1081;
+                &#x200E;(ru)&#x200F;</a
+              >
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+
+    <div class="tool_dataprivacy">
+      <a href={`${siteUrl}/admin/tool/dataprivacy/summary.php`}
+        >Data retention summary</a
+      >
+    </div>
+  </div>
 </footer>
