@@ -1,0 +1,130 @@
+---
+// pages/attendance.astro
+// Attendance page extracted from user HTML snippet
+// Uses Layout.astro which supplies Navbar, PageHeader, and Footer.
+
+import Layout from "../layouts/Layout.astro";
+import LeftColumn from "../components/LeftColumn.astro";
+import RightColumn from "../components/RightColumn.astro";
+import QuickLinks from "../components/QuickLinks.astro";
+import { attendanceData } from "../data/mockData";
+
+const siteUrl = "";
+const sesskey = "37iSO0hLua";
+---
+
+<Layout
+  title="Attendance"
+  pageTitle="Attendance"
+  breadcrumbs={[
+    { label: "Home", href: "/", current: false },
+    { label: "Attendance", href: "/attendance", current: true },
+  ]}
+>
+  <div id="region-main-box" class="region-main">
+    <div id="region-main" class="region-main-content">
+      <span class="notifications" id="user-notifications"></span>
+      <span id="maincontent"></span>
+      <div class="header-group">
+        <div class="activity-title">
+          <h2>Attendance - All courses</h2>
+        </div>
+      </div>
+
+      <div class="activity-header" data-for="page-activity-header">
+        <span class="visually-hidden">Completion requirements</span>
+        <div
+          data-region="activity-information"
+          data-activityname="Attendance"
+          class="activity-information"
+        >
+          <div data-region="activity-details" class="activity-details"></div>
+        </div>
+      </div>
+
+      <div role="main">
+        <div class="table-responsive">
+          <table class="generaltable table table-hover">
+            <thead>
+              <tr>
+                <th
+                  class="header c0 colcourse"
+                  style="text-align:left;"
+                  scope="col">Course</th
+                >
+                <th
+                  class="header c1 colatt"
+                  style="text-align:left;"
+                  scope="col">Attendance</th
+                >
+                <th
+                  class="header c2 colsessionscompleted"
+                  style="text-align:center;"
+                  scope="col">Taken sessions</th
+                >
+                <th
+                  class="header c3 colpointssessionscompleted"
+                  style="text-align:center;"
+                  scope="col">Points over taken sessions</th
+                >
+                <th
+                  class="header c4 lastcol colpercentagesessionscompleted"
+                  style="text-align:center;"
+                  scope="col">Percentage over taken sessions</th
+                >
+              </tr>
+            </thead>
+            <tbody>
+              {
+                attendanceData.map((item) => (
+                  <tr>
+                    <td class="colcourse cell c0" style="text-align:left;">
+                      <a href={item.courseUrl}>{item.courseName}</a>
+                    </td>
+                    <td class="colatt cell c1" style="text-align:left;">
+                      <a href={item.attendanceUrl}>Attendance</a>
+                    </td>
+                    <td
+                      class="colsessionscompleted cell c2"
+                      style="text-align:center;"
+                    >
+                      {item.takenSessions}
+                    </td>
+                    <td
+                      class="colpointssessionscompleted cell c3"
+                      style="text-align:center;"
+                    >
+                      {item.points}
+                    </td>
+                    <td
+                      class="colpercentagesessionscompleted cell c4 lastcol"
+                      style="text-align:center;"
+                    >
+                      {item.percentage}
+                    </td>
+                  </tr>
+                ))
+              }
+              <tr class="lastrow">
+                <td
+                  class="averageattendance colcourse cell c0"
+                  style="text-align:left;"
+                  colspan="4">Average attendance</td
+                >
+                <td
+                  class="colatt cell c1 lastcol"
+                  style="text-align:left;text-align: center">100.0%</td
+                >
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <LeftColumn siteUrl={siteUrl}>
+    <QuickLinks siteUrl={siteUrl} />
+  </LeftColumn>
+  <RightColumn siteUrl={siteUrl} />
+</Layout>

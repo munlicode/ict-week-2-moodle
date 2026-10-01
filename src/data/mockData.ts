@@ -365,3 +365,87 @@ export const announcementsData: Announcement[] = [
     repliesCount: 0,
   },
 ];
+
+export interface AttendanceItem {
+  id: string;
+  courseName: string;
+  courseUrl: string;
+  attendanceUrl: string;
+  takenSessions: number;
+  points: string;
+  percentage: string;
+}
+
+export const attendanceData: AttendanceItem[] = [
+  {
+    id: "att-2590",
+    courseName: "Discrete Mathematics | Duisen Zhanerke",
+    courseUrl: "https://lms.astanait.edu.kz/course/view.php?id=2590",
+    attendanceUrl:
+      "https://lms.astanait.edu.kz/mod/attendance/view.php?id=76528&studentid=20033&view=5",
+    takenSessions: 9,
+    points: "18 / 18",
+    percentage: "100.0%",
+  },
+  {
+    id: "att-2575",
+    courseName: "Foreign Language 1 (B1) | Seksenbayeva Assel",
+    courseUrl: "https://lms.astanait.edu.kz/course/view.php?id=2575",
+    attendanceUrl:
+      "https://lms.astanait.edu.kz/mod/attendance/view.php?id=76423&studentid=20033&view=5",
+    takenSessions: 17,
+    points: "34 / 34",
+    percentage: "100.0%",
+  },
+  {
+    id: "att-2544",
+    courseName: "Information and Communication Technologies | Sembayev Talgat",
+    courseUrl: "https://lms.astanait.edu.kz/course/view.php?id=2544",
+    attendanceUrl:
+      "https://lms.astanait.edu.kz/mod/attendance/view.php?id=76206&studentid=20033&view=5",
+    takenSessions: 3,
+    points: "6 / 6",
+    percentage: "100.0%",
+  },
+  {
+    id: "att-2565",
+    courseName: "Introduction to Programming | Kydyrbekova Aigerim",
+    courseUrl: "https://lms.astanait.edu.kz/course/view.php?id=2565",
+    attendanceUrl:
+      "https://lms.astanait.edu.kz/mod/attendance/view.php?id=76353&studentid=20033&view=5",
+    takenSessions: 8,
+    points: "16 / 16",
+    percentage: "100.0%",
+  },
+  {
+    id: "att-2761",
+    courseName: "Physical Education (Athletics) | Abenov Maxat",
+    courseUrl: "https://lms.astanait.edu.kz/course/view.php?id=2761",
+    attendanceUrl:
+      "https://lms.astanait.edu.kz/mod/attendance/view.php?id=85021&studentid=20033&view=5",
+    takenSessions: 6,
+    points: "12 / 12",
+    percentage: "100.0%",
+  },
+  {
+    id: "att-2589",
+    courseName: "Psychology | Belessova Nursulu",
+    courseUrl: "https://lms.astanait.edu.kz/course/view.php?id=2589",
+    attendanceUrl:
+      "https://lms.astanait.edu.kz/mod/attendance/view.php?id=76521&studentid=20033&view=5",
+    takenSessions: 7,
+    points: "14 / 14",
+    percentage: "100.0%",
+  },
+  {
+    id: "att-2647",
+    courseName: "Sociology | Nurkanat Anel",
+    courseUrl: "https://lms.astanait.edu.kz/course/view.php?id=2647",
+    attendanceUrl:
+      "https://lms.astanait.edu.kz/mod/attendance/view.php?id=76927&studentid=20033&view=5",
+    takenSessions: 8,
+    points: "16 / 16",
+    percentage: "100.0%",
+  },
+];
+
