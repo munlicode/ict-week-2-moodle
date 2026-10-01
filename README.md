@@ -2,7 +2,7 @@
 
 ## Demo
 
-Open in [http://localhost:4321](http://localhost:4321)
+Open in [https://ict-week-2-moodle.nurzhanmuratkhan.workers.dev](https://ict-week-2-moodle.nurzhanmuratkhan.workers.dev)
 
 ## Quick Start
 
