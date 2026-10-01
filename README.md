@@ -2,7 +2,7 @@
 
 ## Demo
 
-Open in [https://ict-week-2-moodle.nurzhanmuratkhan.workers.dev](https://ict-week-2-moodle.nurzhanmuratkhan.workers.dev)
+Open on [https://ict-week-2-moodle.nurzhanmuratkhan.workers.dev](https://ict-week-2-moodle.nurzhanmuratkhan.workers.dev)
 
 ## Quick Start
 
