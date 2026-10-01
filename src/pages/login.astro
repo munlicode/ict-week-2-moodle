@@ -1,0 +1,440 @@
+---
+// nippo/src/pages/login.astro
+// Mock Auth Page for Astana IT University LMS
+---
+
+<!doctype html>
+<html dir="ltr" lang="en" xml:lang="en">
+  <head>
+    <title>Log in to the site | frontpage</title>
+    <link
+      rel="shortcut icon"
+      href="https://lms.astanait.edu.kz/pluginfile.php/1/core_admin/favicon/64x64/1788154519/logo%20AITU%28imageonly%29.png"
+    />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="moodle, Log in to the site | frontpage" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://lms.astanait.edu.kz/theme/yui_combo.php?rollup/3.18.1/yui-moodlesimple-min.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://lms.astanait.edu.kz/theme/styles.php/classic/1788154519_1759344148/all"
+    />
+    <script is:inline src="/mock-auth.js"></script>
+  </head>
+  <body
+    id="page-login-index"
+    class="format-site path-login chrome dir-ltr lang-en yui-skin-sam yui3-skin-sam lms-astanait-edu-kz pagelayout-login course-1 context-1 notloggedin theme jsenabled"
+  >
+    <div id="page-wrapper">
+      <div id="page" class="mt-0">
+        <div id="page-content" class="min-vh-100 row g-0">
+          <aside class="login-layout-left col-lg-6 d-none d-lg-flex">
+            <div class="login-layout-left-content">
+              <h1 class="h2 mb-3">Welcome to Moodle</h1>
+              <div class="mx-auto mb-4 text-start">
+                Your learning journey starts here. Access courses, connect with
+                peers, and achieve your goals.
+              </div>
+              <p class="mx-auto mb-4">
+                You're part of a global learning community
+              </p>
+              <div class="login-layout-stats">
+                <div class="login-layout-stat">
+                  <strong class="login-layout-stat-value">500M</strong>
+                  <span>users</span>
+                </div>
+                <div class="login-layout-stat">
+                  <strong class="login-layout-stat-value">150K</strong>
+                  <span>sites</span>
+                </div>
+                <div class="login-layout-stat">
+                  <strong class="login-layout-stat-value">200+</strong>
+                  <span>countries</span>
+                </div>
+              </div>
+            </div>
+          </aside>
+          <div id="region-main" class="login-layout-right col-12 col-lg-6">
+            <div id="region-main-box" class="login-layout-right-content">
+              <div class="login-container">
+                <div role="main">
+                  <span id="maincontent"></span>
+                  <div class="loginform">
+                    <div
+                      id="loginlogo"
+                      class="d-flex justify-content-center mb-4"
+                    >
+                      <img
+                        id="logoimage"
+                        src="https://lms.astanait.edu.kz/pluginfile.php/1/core_admin/logo/0x200/1788154519/Astana%20IT%20University%20%284%29.png"
+                        class="img-fluid"
+                        alt="Site home"
+                      />
+                    </div>
+
+                    <div id="mock-alert-container"></div>
+                    <h1 class="h2">Welcome back</h1>
+                    <p class="text-muted mb-3">Log in to Site home</p>
+
+                    <!-- Demo Credentials Callout -->
+                    <div
+                      class="alert alert-info border-0 shadow-sm d-flex align-items-center gap-2 mb-4"
+                      style="border-radius: 10px; background: rgba(13, 110, 253, 0.08); color: #084298;"
+                    >
+                      <i class="fa fa-info-circle fs-5" aria-hidden="true"></i>
+                      <div class="small ps-2">
+                        <strong>Demo Credentials:</strong> Username: <code
+                          >aitu_student</code
+                        > | Password: <code>1234</code>
+                      </div>
+                    </div>
+
+                    <form
+                      class="login-form"
+                      action="#"
+                      method="post"
+                      id="login"
+                    >
+                      <div class="login-form-username mb-3">
+                        <label for="username" class="form-label">
+                          Username
+                        </label>
+                        <input
+                          type="text"
+                          name="username"
+                          id="username"
+                          class="form-control"
+                          value="aitu_student"
+                          placeholder="Enter your username"
+                          autocomplete="username"
+                        />
+                      </div>
+                      <div class="login-form-password mb-3">
+                        <label for="password" class="form-label">Password</label
+                        >
+                        <input
+                          type="password"
+                          name="password"
+                          id="password"
+                          value="1234"
+                          class="form-control"
+                          placeholder="Enter your password"
+                          autocomplete="current-password"
+                        />
+                      </div>
+
+                      <!-- Remember me for N hours -->
+                      <div
+                        class="login-form-remember mb-3 rounded d-flex align-items-center justify-content-between flex-wrap gap-2"
+                      >
+                        <div
+                          class="form-check d-flex align-items-center gap-2 m-0"
+                        >
+                          <input
+                            class="form-check-input"
+                            type="checkbox"
+                            id="rememberme"
+                            checked
+                          />
+                          <label
+                            class="form-check-label fw-semibold small"
+                            for="rememberme"
+                          >
+                            Remember me for
+                          </label>
+                        </div>
+                        <div class="d-flex align-items-center gap-1">
+                          <input
+                            type="number"
+                            id="rememberhours"
+                            class="form-control form-control-sm text-center fw-bold"
+                            value="2"
+                            min="1"
+                            max="720"
+                          />
+                          <span class="text-muted small fw-medium">hours</span>
+                        </div>
+                      </div>
+
+                      <div class="text-end mb-3">
+                        <a href="#" id="forgot-pass-btn">Forgot password?</a>
+                      </div>
+                      <div class="login-form-submit mb-3">
+                        <button
+                          class="btn btn-primary w-100 py-2 fw-semibold"
+                          type="submit"
+                          id="loginbtn"
+                        >
+                          Log in
+                        </button>
+                      </div>
+                    </form>
+                    <div
+                      class="login-separator my-4 text-center text-muted small position-relative"
+                    >
+                      <span
+                        class="bg-white px-3 text-uppercase fw-bold opacity-75"
+                        >OR</span
+                      >
+                    </div>
+                    <div class="login-identityproviders">
+                      <button
+                        type="button"
+                        id="openid-btn"
+                        class="btn login-identityprovider-btn btn-outline-secondary w-100 mb-3 d-flex align-items-center justify-content-center gap-2 py-2 fw-medium"
+                      >
+                        <img
+                          src="https://lms.astanait.edu.kz/theme/image.php/classic/auth_oidc/1788154519/o365"
+                          alt=""
+                          width="24"
+                          height="24"
+                        />
+                        Log in with OpenID Connect
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script is:inline>
+      document.addEventListener("DOMContentLoaded", function () {
+        if (window.MockAuth) {
+          window.MockAuth.redirectIfAuthenticated();
+        }
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const alertContainer = document.getElementById("mock-alert-container");
+
+        if (urlParams.get("reason") === "session_expired") {
+          alertContainer.innerHTML = `
+            <div class="alert alert-warning border-0 shadow-sm alert-dismissible fade show" role="alert">
+              <i class="fa fa-exclamation-triangle me-2"></i> Your session has expired or is invalid. Please log in again.
+            </div>
+          `;
+        } else if (urlParams.get("msg") === "logged_out") {
+          alertContainer.innerHTML = `
+            <div class="alert alert-success border-0 shadow-sm alert-dismissible fade show" role="alert">
+              <i class="fa fa-check-circle me-2"></i> You have logged out successfully.
+            </div>
+          `;
+        }
+
+        const loginForm = document.getElementById("login");
+        if (loginForm) {
+          loginForm.addEventListener("submit", function (e) {
+            e.preventDefault();
+            const userVal = document.getElementById("username").value.trim();
+            const passVal = document.getElementById("password").value.trim();
+            const rememberMeChecked =
+              document.getElementById("rememberme").checked;
+            const hoursVal = rememberMeChecked
+              ? document.getElementById("rememberhours").value || 2
+              : 1;
+
+            if (userVal === "aitu_student" && passVal === "1234") {
+              alertContainer.innerHTML = `
+                <div class="alert alert-success border-0 shadow-sm">
+                  <i class="fa fa-check-circle me-2"></i> Login successful! Session remembered for ${hoursVal} hour(s). Redirecting...
+                </div>
+              `;
+              window.MockAuth.setSession(userVal, hoursVal);
+              setTimeout(() => {
+                window.location.href = "/";
+              }, 600);
+            } else {
+              alertContainer.innerHTML = `
+                <div class="alert alert-danger border-0 shadow-sm">
+                  <i class="fa fa-exclamation-circle me-2"></i> Invalid username or password. (Hint: <strong>aitu_student</strong> / <strong>1234</strong>)
+                </div>
+              `;
+            }
+          });
+        }
+
+        const openidBtn = document.getElementById("openid-btn");
+        if (openidBtn) {
+          openidBtn.addEventListener("click", function (e) {
+            e.preventDefault();
+            const rememberMeChecked =
+              document.getElementById("rememberme").checked;
+            const hoursVal = rememberMeChecked
+              ? document.getElementById("rememberhours").value || 24
+              : 24;
+            if (window.MockAuth) {
+              window.MockAuth.triggerOpenIDLogin(hoursVal);
+            }
+          });
+        }
+
+        const forgotBtn = document.getElementById("forgot-pass-btn");
+        if (forgotBtn) {
+          forgotBtn.addEventListener("click", function (e) {
+            e.preventDefault();
+            alert(
+              "Demo credentials: Username is 'aitu_student' and Password is '1234'",
+            );
+          });
+        }
+
+        const rememberCheckbox = document.getElementById("rememberme");
+        const hoursInput = document.getElementById("rememberhours");
+        if (rememberCheckbox && hoursInput) {
+          const updateHoursState = () => {
+            hoursInput.disabled = !rememberCheckbox.checked;
+          };
+          rememberCheckbox.addEventListener("change", updateHoursState);
+          updateHoursState();
+        }
+      });
+    </script>
+
+    <style is:global>
+      /* Remember Me Card Container */
+      .login-form-remember {
+        background-color: #f8fafc !important;
+        border: 1.5px solid #e2e8f0 !important;
+        border-radius: 12px !important;
+        padding: 0.65rem 0.85rem !important;
+        transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: 0 1px 3px rgba(15, 23, 42, 0.03);
+      }
+
+      .login-form-remember:hover {
+        background-color: #f1f5f9 !important;
+        border-color: #cbd5e1 !important;
+        box-shadow: 0 4px 12px rgba(15, 23, 42, 0.06);
+        transform: translateY(-1px);
+      }
+
+      .login-form-remember:has(#rememberme:checked) {
+        background-color: rgba(13, 110, 253, 0.04) !important;
+        border-color: rgba(13, 110, 253, 0.35) !important;
+        box-shadow: 0 4px 14px rgba(13, 110, 253, 0.08);
+      }
+
+      .login-form-remember:has(#rememberme:checked):hover {
+        background-color: rgba(13, 110, 253, 0.07) !important;
+        border-color: rgba(13, 110, 253, 0.5) !important;
+      }
+
+      /* Checkbox input styling */
+      .login-form-remember .form-check-input#rememberme {
+        width: 1.25rem;
+        height: 1.25rem;
+        margin-top: 0;
+        cursor: pointer;
+        border: 2px solid #94a3b8;
+        border-radius: 6px;
+        background-color: #ffffff;
+        transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        position: relative;
+        appearance: none;
+        -webkit-appearance: none;
+        outline: none;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+      }
+
+      .login-form-remember .form-check-input#rememberme:hover {
+        border-color: #0d6efd;
+        transform: scale(1.08);
+        box-shadow: 0 0 0 4px rgba(13, 110, 253, 0.15);
+      }
+
+      .login-form-remember .form-check-input#rememberme:checked {
+        background-color: #0d6efd;
+        border-color: #0d6efd;
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3e%3cpath fill='none' stroke='%23fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='M5 10l3.5 3.5L15 6'/%3e%3c/svg%3e");
+        background-size: 80% 80%;
+        background-position: center;
+        background-repeat: no-repeat;
+        box-shadow: 0 2px 8px rgba(13, 110, 253, 0.35);
+      }
+
+      .login-form-remember .form-check-input#rememberme:checked:hover {
+        background-color: #0b5ed7;
+        border-color: #0a58ca;
+        transform: scale(1.08);
+        box-shadow:
+          0 0 0 4px rgba(13, 110, 253, 0.2),
+          0 4px 12px rgba(13, 110, 253, 0.4);
+      }
+
+      .login-form-remember .form-check-input#rememberme:focus-visible {
+        box-shadow: 0 0 0 4px rgba(13, 110, 253, 0.25);
+        border-color: #0d6efd;
+      }
+
+      .login-form-remember .form-check-input#rememberme:active {
+        transform: scale(0.95);
+      }
+
+      /* Label styling */
+      .login-form-remember .form-check-label {
+        cursor: pointer;
+        user-select: none;
+        transition:
+          color 0.2s ease,
+          font-weight 0.2s ease;
+        color: #475569 !important;
+      }
+
+      .login-form-remember:hover .form-check-label {
+        color: #1e293b !important;
+      }
+
+      .login-form-remember:has(#rememberme:checked) .form-check-label {
+        color: #0f172a !important;
+        font-weight: 600 !important;
+      }
+
+      /* Hours Number Input styling */
+      .login-form-remember #rememberhours {
+        width: 70px;
+        border: 1.5px solid #cbd5e1;
+        border-radius: 8px;
+        padding: 0.25rem 0.5rem;
+        background-color: #ffffff;
+        color: #0d6efd;
+        font-weight: 700;
+        transition: all 0.2s ease;
+        box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.03);
+      }
+
+      .login-form-remember #rememberhours:hover:not(:disabled) {
+        border-color: #0d6efd;
+        background-color: #ffffff;
+        box-shadow: 0 2px 8px rgba(13, 110, 253, 0.15);
+        transform: translateY(-1px);
+      }
+
+      .login-form-remember #rememberhours:focus:not(:disabled) {
+        border-color: #0d6efd;
+        box-shadow: 0 0 0 3px rgba(13, 110, 253, 0.25);
+        background-color: #ffffff;
+        outline: none;
+      }
+
+      .login-form-remember #rememberhours:disabled,
+      .login-form-remember:not(:has(#rememberme:checked)) #rememberhours {
+        opacity: 0.45;
+        background-color: #f1f5f9;
+        border-color: #e2e8f0;
+        color: #94a3b8 !important;
+        cursor: not-allowed;
+        box-shadow: none;
+        transform: none;
+      }
+    </style>
+  </body>
+</html>

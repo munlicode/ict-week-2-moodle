@@ -1,0 +1,553 @@
+---
+// pages/index.astro
+// Dashboard (frontpage) page extracted from Dashboard | frontpage.html
+// Uses Layout.astro which supplies Navbar, PageHeader, and Footer.
+
+import Layout from "../layouts/Layout.astro";
+import LeftColumn from "../components/LeftColumn.astro";
+import RightColumn from "../components/RightColumn.astro";
+import { dayFilters, timelineItems } from "../data/mockData";
+import QuickLinks from "../components/QuickLinks.astro";
+
+const siteUrl = "";
+const sesskey = "OYML9ERAvF";
+---
+
+<Layout
+  title="Dashboard | frontpage"
+  pageTitle="Dashboard"
+  breadcrumbs={[
+    { label: "Home", href: "/", current: false },
+    { label: "Dashboard", href: "/", current: true },
+  ]}
+>
+  <!-- ── MAIN REGION: Timeline & Core Blocks ───────────────────────── -->
+  <div id="region-main-box" class="region-main">
+    <div id="region-main" class="region-main-content">
+      <span class="notifications" id="user-notifications"></span>
+      <div role="main">
+        <span id="maincontent"></span>
+        <section
+          id="block-region-content"
+          class="block-region"
+          data-blockregion="content"
+          data-droptarget="1"
+          aria-labelledby="content-block-region-heading"
+        >
+          <h2 class="visually-hidden" id="content-block-region-heading">
+            Main content blocks
+          </h2>
+          <a href="#sb-6" class="visually-hidden-focusable">Skip Timeline</a>
+
+          <!-- ── Timeline Block ─────────────────────────────────── -->
+          <section
+            id="inst42813"
+            class="block_timeline block card mb-3"
+            role="region"
+            data-block="timeline"
+            data-instance-id="42813"
+            aria-labelledby="instance-42813-header"
+          >
+            <div class="card-body p-3">
+              <div class="d-flex">
+                <h3 id="instance-42813-header" class="h5 card-title">
+                  Timeline
+                </h3>
+              </div>
+
+              <div class="card-text content mt-3">
+                <div
+                  id="block-timeline-6abcc49adb1e96abcc49963d9214-1"
+                  class="block-timeline"
+                  data-region="timeline"
+                >
+                  <div class="p-0 px-2">
+                    <div class="d-flex flex-wrap gap-1 g-0">
+                      <div>
+                        <div data-region="day-filter" class="dropdown mb-1">
+                          <button
+                            type="button"
+                            class="btn btn-outline-secondary dropdown-toggle icon-no-margin"
+                            data-bs-toggle="dropdown"
+                            aria-haspopup="true"
+                            aria-expanded="false"
+                            aria-label="Filter timeline by date"
+                            aria-controls="menudayfilter"
+                            title="Filter timeline by date"
+                            aria-describedby="timeline-day-filter-current-selection"
+                          >
+                            <span
+                              id="timeline-day-filter-current-selection"
+                              data-active-item-text
+                            >
+                              All
+                            </span>
+                          </button>
+                          <div
+                            id="menudayfilter"
+                            role="menu"
+                            class="dropdown-menu"
+                            data-show-active-item
+                            data-skip-active-class="true"
+                          >
+                            <a
+                              class="dropdown-item dropdown-item-active"
+                              href="#"
+                              data-from="-14"
+                              data-filtername="all"
+                              aria-current="true"
+                              aria-label="All filter option"
+                              role="menuitem">All</a
+                            >
+                            <a
+                              class="dropdown-item"
+                              href="#"
+                              data-from="-14"
+                              data-to="1"
+                              data-filtername="overdue"
+                              aria-label="Overdue filter option"
+                              role="menuitem">Overdue</a
+                            >
+                            <div class="dropdown-divider" role="separator">
+                            </div>
+                            <div
+                              role="group"
+                              aria-labelledby="duedatefiltergrouplabel"
+                            >
+                              <div
+                                class="h6 dropdown-header"
+                                role="presentation"
+                                id="duedatefiltergrouplabel"
+                              >
+                                Due date
+                              </div>
+                              <a
+                                class="dropdown-item"
+                                href="#"
+                                data-from="0"
+                                data-to="7"
+                                data-filtername="next7days"
+                                aria-label="Next 7 days filter option"
+                                role="menuitem">Next 7 days</a
+                              >
+                              <a
+                                class="dropdown-item"
+                                href="#"
+                                data-from="0"
+                                data-to="30"
+                                data-filtername="next30days"
+                                aria-label="Next 30 days filter option"
+                                role="menuitem">Next 30 days</a
+                              >
+                              <a
+                                class="dropdown-item"
+                                href="#"
+                                data-from="0"
+                                data-to="90"
+                                data-filtername="next3months"
+                                aria-label="Next 3 months filter option"
+                                role="menuitem">Next 3 months</a
+                              >
+                              <a
+                                class="dropdown-item"
+                                href="#"
+                                data-from="0"
+                                data-to="180"
+                                data-filtername="next6months"
+                                aria-label="Next 6 months filter option"
+                                role="menuitem">Next 6 months</a
+                              >
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div>
+                        <div data-region="view-selector" class="btn-group mb-1">
+                          <button
+                            type="button"
+                            class="btn btn-outline-secondary dropdown-toggle icon-no-margin"
+                            data-bs-toggle="dropdown"
+                            aria-haspopup="true"
+                            aria-expanded="false"
+                            aria-label="Sort timeline items"
+                            aria-controls="menusortby"
+                            title="Sort timeline items"
+                            aria-describedby="timeline-view-selector-current-selection"
+                          >
+                            <span
+                              id="timeline-view-selector-current-selection"
+                              data-active-item-text
+                            >
+                              Sort by dates
+                            </span>
+                          </button>
+                          <div
+                            id="menusortby"
+                            role="tablist"
+                            class="dropdown-menu dropdown-menu-end"
+                            data-show-active-item
+                          >
+                            <a
+                              class="dropdown-item active dropdown-item-active"
+                              href="#"
+                              data-filtername="sortbydates"
+                              aria-current="true"
+                              role="tab">Sort by dates</a
+                            >
+                            <a
+                              class="dropdown-item"
+                              href="#"
+                              data-filtername="sortbycourses"
+                              role="tab">Sort by courses</a
+                            >
+                          </div>
+                        </div>
+                      </div>
+
+                      <div
+                        class="flex-grow-1 d-flex justify-content-end nav-search"
+                      >
+                        <div class="w-100">
+                          <div
+                            class="d-flex flex-wrap align-items-center simplesearchform"
+                          >
+                            <div
+                              class="input-group searchbar w-100"
+                              role="search"
+                            >
+                              <input
+                                type="text"
+                                id="timeline-search-input"
+                                class="form-control withclear rounded"
+                                placeholder="Search by activity type or name"
+                                aria-label="Search by activity type or name"
+                                data-action="search"
+                                autocomplete="off"
+                              />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="pb-3 px-2 border-bottom"></div>
+                  </div>
+
+                  <div class="p-0">
+                    <div data-region="timeline-view">
+                      <div class="tab-content">
+                        <div
+                          class="tab-pane active show fade"
+                          data-region="view-dates"
+                        >
+                          <div data-region="event-list-container">
+                            <div data-region="event-list-content">
+                              <div
+                                class="pb-2"
+                                id="timeline-event-list-wrapper"
+                              >
+                                {
+                                  timelineItems.map((item) => (
+                                    <div
+                                      class="timeline-item-entry"
+                                      data-date={item.dueDate}
+                                      data-course={item.courseName}
+                                      data-overdue={
+                                        item.overdue ? "true" : "false"
+                                      }
+                                      data-search={`${item.title} ${item.courseName}`.toLowerCase()}
+                                    >
+                                      <div
+                                        class="mt-3"
+                                        data-region="event-list-content-date"
+                                      >
+                                        <h4 class="h6 d-inline fw-bold px-2">
+                                          {item.dateGroup}
+                                        </h4>
+                                      </div>
+                                      <div class="list-group list-group-flush">
+                                        <div
+                                          class="list-group-item timeline-event-list-item flex-column pt-2 pb-0 border-0 px-2"
+                                          data-region="event-list-item"
+                                        >
+                                          <div class="d-flex flex-wrap pb-1">
+                                            <div class="d-flex me-auto pb-1 mw-100 timeline-name">
+                                              <small class="text-end text-nowrap align-self-center ms-1 me-2">
+                                                {item.time}
+                                              </small>
+                                              <div class="event-name-container flex-grow-1 line-height-3 nowrap text-truncate">
+                                                <div class="d-flex">
+                                                  <h5 class="h6 event-name mb-0 pb-1 text-truncate">
+                                                    {item.overdue && (
+                                                      <span class="badge rounded-pill bg-danger text-white ms-1 float-end">
+                                                        Overdue
+                                                      </span>
+                                                    )}
+                                                    <a
+                                                      href={item.actionUrl}
+                                                      title={`${item.title} is due`}
+                                                    >
+                                                      {item.title}
+                                                    </a>
+                                                  </h5>
+                                                </div>
+                                                <small class="mb-0 text-muted">
+                                                  {item.activityDetails} ·{" "}
+                                                  {item.courseName}
+                                                </small>
+                                              </div>
+                                            </div>
+                                            {item.actionLabel && (
+                                              <div class="d-flex timeline-action-button ms-auto align-self-center">
+                                                <h5 class="h6 event-action mb-0">
+                                                  <a
+                                                    class="list-group-item-action btn btn-outline-secondary btn-sm text-nowrap"
+                                                    href={item.actionUrl}
+                                                    title={item.actionLabel}
+                                                  >
+                                                    {item.actionLabel}
+                                                  </a>
+                                                </h5>
+                                              </div>
+                                            )}
+                                          </div>
+                                          <div class="pt-2 border-bottom" />
+                                        </div>
+                                      </div>
+                                    </div>
+                                  ))
+                                }
+                              </div>
+
+                              <div
+                                id="timeline-empty-message"
+                                class={`hidden text-xs-center text-center mt-3 p-4 ${timelineItems.length > 0 ? "d-none" : ""}`}
+                                data-region="no-events-empty-message"
+                              >
+                                <img
+                                  src={`${siteUrl}/theme/image.php/classic/block_timeline/1788154519/activities`}
+                                  alt=""
+                                  style="height: 70px; width: 70px"
+                                />
+                                <p class="text-muted mt-2">
+                                  No activities require action
+                                </p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="footer"></div>
+              </div>
+            </div>
+          </section>
+          <span id="sb-6"></span>
+        </section>
+      </div>
+    </div>
+  </div>
+
+  <LeftColumn siteUrl={siteUrl}>
+    <QuickLinks siteUrl={siteUrl} />
+  </LeftColumn>
+  <RightColumn siteUrl={siteUrl} />
+</Layout>
+
+<script>
+  function setupDropdowns() {
+    const listContainer = document.getElementById(
+      "timeline-event-list-wrapper",
+    );
+    const emptyMessage = document.getElementById("timeline-empty-message");
+    const searchInput = document.getElementById(
+      "timeline-search-input",
+    ) as HTMLInputElement | null;
+    const sortDropdown = document.getElementById("menusortby");
+    const dayFilterDropdown = document.getElementById("menudayfilter");
+    const sortBtnLabel = document.getElementById(
+      "timeline-view-selector-current-selection",
+    );
+    const dayFilterBtnLabel = document.getElementById(
+      "timeline-day-filter-current-selection",
+    );
+
+    // Toggle dropdown visibility on button click
+    document
+      .querySelectorAll<HTMLButtonElement>('[data-bs-toggle="dropdown"]')
+      .forEach((button) => {
+        button.addEventListener("click", (e) => {
+          e.stopPropagation();
+          const parent = button.closest(".dropdown, .btn-group");
+          const menu = parent?.querySelector(".dropdown-menu");
+          if (!menu) return;
+
+          const isShown = menu.classList.contains("show");
+          // Close all open dropdowns
+          document
+            .querySelectorAll(".dropdown-menu.show")
+            .forEach((m) => m.classList.remove("show"));
+
+          if (!isShown) {
+            menu.classList.add("show");
+          }
+        });
+      });
+
+    // Close dropdowns when clicking outside
+    document.addEventListener("click", (e) => {
+      const target = e.target as HTMLElement;
+      if (!target.closest(".dropdown, .btn-group")) {
+        document
+          .querySelectorAll(".dropdown-menu.show")
+          .forEach((m) => m.classList.remove("show"));
+      }
+    });
+
+    let currentSort = "sortbydates";
+    let currentDayFilter = "all";
+    let filterFrom: number | null = null;
+    let filterTo: number | null = null;
+    let searchQuery = "";
+
+    function filterAndSortItems() {
+      if (!listContainer) return;
+      const items = Array.from(
+        listContainer.querySelectorAll<HTMLDivElement>(".timeline-item-entry"),
+      );
+      let visibleCount = 0;
+
+      const now = new Date();
+      // Start of current day (midnight)
+      const todayMidnight = new Date(
+        now.getFullYear(),
+        now.getMonth(),
+        now.getDate(),
+      ).getTime();
+      const ONE_DAY_MS = 24 * 60 * 60 * 1000;
+
+      items.forEach((item) => {
+        const itemSearch = item.getAttribute("data-search") || "";
+        const isOverdue = item.getAttribute("data-overdue") === "true";
+        const itemDateStr = item.getAttribute("data-date") || "";
+        const itemTime = new Date(itemDateStr).getTime();
+
+        let matchesSearch =
+          searchQuery === "" || itemSearch.includes(searchQuery.toLowerCase());
+        let matchesDay = true;
+
+        if (currentDayFilter === "overdue") {
+          matchesDay = isOverdue;
+        } else if (currentDayFilter !== "all" && filterFrom !== null) {
+          const minTime = todayMidnight + filterFrom * ONE_DAY_MS;
+          const maxTime =
+            filterTo !== null
+              ? todayMidnight + filterTo * ONE_DAY_MS
+              : Infinity;
+          matchesDay = itemTime >= minTime && itemTime <= maxTime;
+        }
+
+        if (matchesSearch && matchesDay) {
+          item.classList.remove("d-none");
+          visibleCount++;
+        } else {
+          item.classList.add("d-none");
+        }
+      });
+
+      // Handle empty fallback state
+      if (emptyMessage) {
+        if (visibleCount === 0) {
+          emptyMessage.classList.remove("d-none");
+        } else {
+          emptyMessage.classList.add("d-none");
+        }
+      }
+
+      // Sort items
+      const visibleItems = items.filter(
+        (item) => !item.classList.contains("d-none"),
+      );
+      visibleItems.sort((a, b) => {
+        if (currentSort === "sortbycourses") {
+          const courseA = (a.getAttribute("data-course") || "").toLowerCase();
+          const courseB = (b.getAttribute("data-course") || "").toLowerCase();
+          return courseA.localeCompare(courseB);
+        } else {
+          // Sort by dates
+          const dateA = new Date(a.getAttribute("data-date") || "").getTime();
+          const dateB = new Date(b.getAttribute("data-date") || "").getTime();
+          return dateA - dateB;
+        }
+      });
+
+      visibleItems.forEach((item) => listContainer.appendChild(item));
+    }
+
+    // Search input listener
+    if (searchInput) {
+      searchInput.addEventListener("input", (e) => {
+        searchQuery = (e.target as HTMLInputElement).value.trim();
+        filterAndSortItems();
+      });
+    }
+
+    // Sort listener
+    if (sortDropdown) {
+      sortDropdown.querySelectorAll(".dropdown-item").forEach((item) => {
+        item.addEventListener("click", (e) => {
+          e.preventDefault();
+          const target = e.currentTarget as HTMLElement;
+          currentSort = target.getAttribute("data-filtername") || "sortbydates";
+          if (sortBtnLabel)
+            sortBtnLabel.textContent = target.textContent?.trim() || "";
+
+          sortDropdown
+            .querySelectorAll(".dropdown-item")
+            .forEach((el) =>
+              el.classList.remove("active", "dropdown-item-active"),
+            );
+          target.classList.add("active", "dropdown-item-active");
+          sortDropdown.classList.remove("show");
+
+          filterAndSortItems();
+        });
+      });
+    }
+
+    // Day filter listener
+    if (dayFilterDropdown) {
+      dayFilterDropdown.querySelectorAll(".dropdown-item").forEach((item) => {
+        item.addEventListener("click", (e) => {
+          e.preventDefault();
+          const target = e.currentTarget as HTMLElement;
+          currentDayFilter = target.getAttribute("data-filtername") || "all";
+
+          const rawFrom = target.getAttribute("data-from");
+          const rawTo = target.getAttribute("data-to");
+          filterFrom = rawFrom !== null ? parseInt(rawFrom, 10) : null;
+          filterTo = rawTo !== null ? parseInt(rawTo, 10) : null;
+
+          if (dayFilterBtnLabel)
+            dayFilterBtnLabel.textContent = target.textContent?.trim() || "";
+
+          dayFilterDropdown
+            .querySelectorAll(".dropdown-item")
+            .forEach((el) => el.classList.remove("dropdown-item-active"));
+          target.classList.add("dropdown-item-active");
+          dayFilterDropdown.classList.remove("show");
+
+          filterAndSortItems();
+        });
+      });
+    }
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", setupDropdowns);
+  } else {
+    setupDropdowns();
+  }
+</script>

@@ -1,0 +1,254 @@
+---
+// QuickLinks.astro — Quick links sidebar block
+import { quickLinksData } from "../data/mockData";
+
+interface Props {
+  siteUrl?: string;
+}
+
+const { siteUrl = "" } = Astro.props;
+
+// Determine current route path for active item logic
+const rawPath = Astro.url.pathname;
+const currentPath =
+  rawPath.length > 1 && rawPath.endsWith("/") ? rawPath.slice(0, -1) : rawPath;
+
+function isExactActive(href: string, label: string): boolean {
+  const normHref =
+    href.length > 1 && href.endsWith("/") ? href.slice(0, -1) : href;
+  if (currentPath === "/") {
+    return normHref === "/" && label === "Dashboard";
+  }
+  return normHref === currentPath;
+}
+
+function isExternal(href: string): boolean {
+  return href.startsWith("http://") || href.startsWith("https://");
+}
+---
+
+<!-- ── Quick Links Block ───────────────────────────────── -->
+<section
+  id="inst-quick-links"
+  class="block_navigation block card mb-3"
+  role="navigation"
+  data-block="quick_links"
+  data-instance-id="quick-links"
+  aria-labelledby="quick-links-header"
+>
+  <div class="card-body p-3">
+    <div class="d-flex align-items-center justify-content-between">
+      <h3 id="quick-links-header" class="h5 card-title mb-0">Quick Links</h3>
+      <button
+        type="button"
+        id="quick-links-toggle"
+        class="nav-toggle-btn"
+        aria-expanded="true"
+        aria-controls="quick-links-content"
+        aria-label="Toggle quick links panel"
+        title="Toggle quick links"
+      >
+        <svg
+          class="nav-toggle-icon"
+          width="16"
+          height="18"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <polyline points="6 9 12 15 18 9"></polyline>
+        </svg>
+      </button>
+    </div>
+
+    <div id="quick-links-content" class="card-text content mt-3">
+      <ul class="clean-nav-tree">
+        {
+          quickLinksData.map((item1) => {
+            const active1 = isExactActive(item1.href, item1.label);
+            const ext1 = isExternal(item1.href);
+            const url1 = ext1 ? item1.href : `${siteUrl}${item1.href}`;
+            return (
+              <li class="depth-1">
+                <a
+                  href={url1}
+                  target={ext1 ? "_blank" : undefined}
+                  rel={ext1 ? "noopener noreferrer" : undefined}
+                  class={`clean-nav-item ${active1 ? "is-active" : ""}`}
+                >
+                  {item1.label}
+                </a>
+                {item1.children && item1.children.length > 0 && (
+                  <ul class="clean-nav-tree">
+                    {item1.children.map((item2) => {
+                      const active2 = isExactActive(item2.href, item2.label);
+                      const ext2 = isExternal(item2.href);
+                      const url2 = ext2 ? item2.href : `${siteUrl}${item2.href}`;
+                      return (
+                        <li class="depth-2">
+                          <a
+                            href={url2}
+                            target={ext2 ? "_blank" : undefined}
+                            rel={ext2 ? "noopener noreferrer" : undefined}
+                            class={`clean-nav-item ${active2 ? "is-active" : ""}`}
+                          >
+                            {item2.label}
+                          </a>
+                          {item2.children && item2.children.length > 0 && (
+                            <ul class="clean-nav-tree">
+                              {item2.children.map((item3) => {
+                                const active3 = isExactActive(
+                                  item3.href,
+                                  item3.label,
+                                );
+                                const ext3 = isExternal(item3.href);
+                                const url3 = ext3 ? item3.href : `${siteUrl}${item3.href}`;
+                                return (
+                                  <li class="depth-3">
+                                    <a
+                                      href={url3}
+                                      target={ext3 ? "_blank" : undefined}
+                                      rel={ext3 ? "noopener noreferrer" : undefined}
+                                      class={`clean-nav-item ${active3 ? "is-active" : ""}`}
+                                    >
+                                      {item3.label}
+                                    </a>
+                                  </li>
+                                );
+                              })}
+                            </ul>
+                          )}
+                        </li>
+                      );
+                    })}
+                  </ul>
+                )}
+              </li>
+            );
+          })
+        }
+      </ul>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Modern, Clean Navigation & Quick Links Panel Styling */
+  .clean-nav-tree,
+  .clean-nav-tree ul {
+    list-style: none !important;
+    padding-left: 0 !important;
+    margin: 0 !important;
+  }
+
+  .clean-nav-tree li {
+    list-style: none !important;
+    margin: 2px 0 !important;
+  }
+
+  /* Override any Moodle default bullet points, arrow pseudo-elements, or backgrounds */
+  .clean-nav-tree *,
+  .clean-nav-tree *:before,
+  .clean-nav-tree *:after {
+    list-style: none !important;
+    background-image: none !important;
+  }
+
+  /* Strip default list item marker for extra safety across browsers */
+  .clean-nav-tree li::before,
+  .clean-nav-tree li::after {
+    content: none !important;
+  }
+
+  .clean-nav-item {
+    display: flex;
+    align-items: center;
+    padding: 7px 12px;
+    color: #495057;
+    text-decoration: none !important;
+    font-size: 0.9rem;
+    font-weight: 500;
+    border-radius: 6px;
+    transition: all 0.15s ease-in-out;
+  }
+
+  .clean-nav-item:hover {
+    color: #0f6cbf;
+    background-color: #f1f5f9;
+  }
+
+  /* Active link styling */
+  .clean-nav-item.is-active {
+    color: #0f6cbf;
+    background-color: #e8f3ff;
+    font-weight: 600;
+  }
+
+  /* Clean depth indentation */
+  .depth-1 > .clean-nav-item {
+    padding-left: 10px;
+  }
+
+  .depth-2 > .clean-nav-item {
+    padding-left: 24px;
+    font-size: 0.875rem;
+  }
+
+  .depth-3 > .clean-nav-item {
+    padding-left: 38px;
+    font-size: 0.85rem;
+  }
+
+  /* Toggle button styling */
+  .nav-toggle-btn {
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    padding: 4px 6px;
+    border-radius: 4px;
+    color: #6c757d;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.15s ease;
+  }
+
+  .nav-toggle-btn:hover {
+    background-color: #e9ecef;
+    color: #212529;
+  }
+
+  .nav-toggle-icon {
+    transition: transform 0.2s ease;
+  }
+
+  .nav-toggle-btn.collapsed .nav-toggle-icon {
+    transform: rotate(-90deg);
+  }
+</style>
+
+<script>
+  function setupQuickLinksToggle() {
+    const toggleBtn = document.getElementById("quick-links-toggle");
+    const navContent = document.getElementById("quick-links-content");
+    if (!toggleBtn || !navContent) return;
+
+    toggleBtn.onclick = () => {
+      const isExpanded = toggleBtn.getAttribute("aria-expanded") === "true";
+      const newExpanded = !isExpanded;
+      toggleBtn.setAttribute("aria-expanded", newExpanded.toString());
+      toggleBtn.classList.toggle("collapsed", !newExpanded);
+      if (newExpanded) {
+        navContent.classList.remove("d-none");
+      } else {
+        navContent.classList.add("d-none");
+      }
+    };
+  }
+
+  setupQuickLinksToggle();
+  document.addEventListener("astro:page-load", setupQuickLinksToggle);
+</script>

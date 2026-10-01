@@ -1,0 +1,172 @@
+---
+// pages/announcements.astro
+// Site announcements page extracted from Home | frontpage.html
+// Uses Layout.astro which supplies Navbar, PageHeader, and Footer.
+
+import Layout from "../layouts/Layout.astro";
+import LeftColumn from "../components/LeftColumn.astro";
+import RightColumn from "../components/RightColumn.astro";
+import { announcementsData } from "../data/mockData";
+import QuickLinks from "../components/QuickLinks.astro";
+
+const siteUrl = "";
+const sesskey = "OYML9ERAvF";
+---
+
+<Layout
+  title="Site announcements"
+  pageTitle="Site announcements"
+  breadcrumbs={[
+    { label: "Home", href: "/", current: false },
+    { label: "Site announcements", href: "/announcements", current: true },
+  ]}
+>
+  <!-- ── LEFT COLUMN: main content ───────────────────────────────────── -->
+  <div id="region-main-box" class="region-main">
+    <div id="region-main" class="region-main-content">
+      <span class="notifications" id="user-notifications"></span>
+
+      <div role="main">
+        <span id="maincontent"></span>
+        <a class="skip-block skip aabtn" href="#skipsitenews"
+          >Skip site announcements</a
+        >
+
+        <!-- ── Site news forum ─────────────────────────────────── -->
+        <div id="site-news-forum">
+          <h2>Site announcements</h2>
+          <div class="subscribelink text-end">
+            <a
+              href={`${siteUrl}/mod/forum/subscribe.php?id=1&sesskey=${sesskey}`}
+              >Subscribe to forum</a
+            >
+          </div>
+
+          <div
+            id="discussion-list"
+            data-contextid="79"
+            data-cmid="1"
+            data-name="Site announcements"
+            data-group=""
+          >
+            <div class="py-3"></div>
+
+            {
+              announcementsData.map((post) => (
+                <article
+                  id={post.id}
+                  class="forum-post-container mb-2"
+                  data-post-id={post.id}
+                  data-region="post"
+                  tabindex="0"
+                  aria-labelledby={`post-header-${post.id}`}
+                  aria-describedby={`post-content-${post.id}`}
+                >
+                  <div
+                    class="d-flex border p-2 mb-2 forumpost focus-target"
+                    aria-label={`${post.title} by ${post.author}`}
+                    data-post-id={post.id}
+                    data-content="forum-post"
+                  >
+                    <div
+                      class="d-flex flex-column w-100"
+                      data-region-content="forum-post-core"
+                    >
+                      <header
+                        id={`post-header-${post.id}`}
+                        class="mb-2 header d-flex"
+                      >
+                        <div class="me-2" style="width: 45px;">
+                          <img
+                            class="rounded-circle w-100"
+                            src={post.avatar}
+                            alt={`Picture of ${post.author}`}
+                            aria-hidden="true"
+                            title={`Picture of ${post.author}`}
+                          />
+                        </div>
+                        <div class="d-flex flex-column">
+                          <h3
+                            class="h6 fw-bold mb-0"
+                            data-region-content="forum-post-core-subject"
+                          >
+                            {post.title}
+                          </h3>
+                          <div class="mb-3" tabindex="-1">
+                            by{" "}
+                            <a
+                              href={`${siteUrl}/user/view.php?id=${post.authorId}&course=1`}
+                            >
+                              {post.author}
+                            </a>
+                            – <time datetime={post.datetime}>{post.date}</time>
+                          </div>
+                        </div>
+                      </header>
+
+                      <div class="d-flex body-content-container">
+                        <div
+                          class="me-2 author-groups-container"
+                          style="width: 45px; flex-shrink: 0"
+                        />
+                        <div class="no-overflow w-100 content-alignment-container">
+                          <div
+                            id={`post-content-${post.id}`}
+                            class="post-content-container"
+                          >
+                            <p>
+                              <strong>Құрметті студенттер!</strong>
+                            </p>
+                            <p Fragment set:html={post.contentKaz} />
+                            <p>Dear Students,</p>
+                            <p Fragment set:html={post.contentEng} />
+                          </div>
+                          <div class="d-flex flex-wrap">
+                            <div
+                              class="post-actions d-flex align-self-end justify-content-end flex-wrap ms-auto p-1"
+                              data-region="post-actions-container"
+                              role="menubar"
+                              aria-label="Post actions"
+                              aria-controls={post.id}
+                            >
+                              <a
+                                data-region="post-action"
+                                href={`${siteUrl}/mod/forum/discuss.php?d=${post.discussionId}#${post.id}`}
+                                class="btn btn-link"
+                                title="Permanent link to this post"
+                                aria-label="Permanent link to this post"
+                                role="menuitem"
+                              >
+                                Permalink
+                              </a>
+                            </div>
+                          </div>
+                          <div class="link text-end">
+                            <a
+                              href={`${siteUrl}/mod/forum/discuss.php?d=${post.discussionId}`}
+                              aria-label={`Discuss the topic: ${post.title}`}
+                            >
+                              Discuss this topic
+                            </a>
+                            &nbsp;({post.repliesCount} replies so far)
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div data-region="replies-container" />
+                </article>
+              ))
+            }
+          </div>
+          <span id="skipsitenews"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <LeftColumn siteUrl={siteUrl}>
+    <QuickLinks siteUrl={siteUrl} />
+  </LeftColumn>
+  <RightColumn siteUrl={siteUrl} />
+</Layout>

@@ -1,0 +1,283 @@
+---
+// Navbar.astro — extracted from Home | frontpage.html (lines 51–214)
+
+interface Props {
+  siteUrl?: string;
+  logoUrl?: string;
+  userName?: string;
+  userId?: number;
+  sesskey?: string;
+}
+
+const {
+  siteUrl = "",
+  logoUrl = "https://lms.astanait.edu.kz/pluginfile.php/1/core_admin/logocompact/300x300/1788154519/logo%20AITU%28imageonly%29.png",
+  userName = "Nurzhan Muratkhan",
+  userId = 20033,
+  sesskey = "OYML9ERAvF",
+} = Astro.props;
+---
+
+<nav class="fixed-top navbar navbar-bootswatch navbar-expand moodle-has-zindex">
+  <div class="container-fluid">
+    <a
+      href={siteUrl || "/"}
+      class="navbar-brand d-flex align-items-center m-1 p-0 aabtn"
+    >
+      <img src={logoUrl} class="logo me-1" alt="frontpage" />
+    </a>
+
+    <div id="usernavigation" class="navbar-nav my-1 ms-auto">
+      <div class="divider border-start h-50 align-self-center mx-1"></div>
+
+      <!-- Notifications popover -->
+      <div
+        class="popover-region collapsed popover-region-notifications"
+        id="nav-notification-popover-container"
+        data-userid={userId}
+        data-region="popover-region"
+      >
+        <div
+          class="popover-region-toggle nav-link icon-no-margin"
+          data-region="popover-region-toggle"
+          aria-controls="popover-region-container"
+          aria-haspopup="true"
+          aria-expanded="false"
+          aria-label="Show notification window with no new notifications"
+          title="Show notification window with no new notifications"
+          tabindex="0"
+          role="button"
+        >
+          <i class="icon fa fa-bell fa-fw" aria-hidden="true"></i>
+          <div
+            class="count-container hidden"
+            data-region="count-container"
+            aria-hidden="true"
+          >
+            0
+          </div>
+        </div>
+        <div
+          aria-modal="true"
+          tabindex="-1"
+          id="popover-region-container"
+          class="popover-region-container"
+          data-region="popover-region-container"
+          aria-hidden="true"
+          aria-label="Notification window"
+          role="dialog"
+        >
+          <div class="popover-region-header-container">
+            <h3
+              class="popover-region-header-text"
+              data-region="popover-region-header-text"
+            >
+              Notifications
+            </h3>
+            <div
+              class="popover-region-header-actions"
+              data-region="popover-region-header-actions"
+            >
+              <a
+                class="mark-all-read-button btn btn-sm btn-link m-0 py-0 icon-no-margin"
+                href="#"
+                title="Mark all as read"
+                data-action="mark-all-read"
+                role="button"
+                aria-label="Mark all as read"
+              >
+                <span class="normal-icon"
+                  ><i class="icon fa fa-check fa-fw" aria-hidden="true"
+                  ></i></span
+                >
+                <span class="loading-icon icon-no-margin">
+                  <i
+                    class="icon fa fa-spinner fa-spin fa-fw"
+                    title="Loading"
+                    role="img"
+                    aria-label="Loading"></i>
+                </span>
+                <span
+                  aria-live="polite"
+                  class="visually-hidden"
+                  data-region="notification-read-feedback"></span>
+              </a>
+              <a
+                href={`${siteUrl}/message/notificationpreferences.php`}
+                title="Notification preferences"
+                aria-label="Notification preferences"
+                class="btn btn-sm btn-link m-0 py-0 icon-no-margin"
+              >
+                <i class="icon fa fa-gear fa-fw" aria-hidden="true"></i>
+              </a>
+              <button
+                type="button"
+                class="btn btn-sm btn-link m-0 py-0 icon-no-margin"
+                aria-label="Close"
+                title="Close"
+                data-action="close-notification-popover"
+              >
+                <i class="icon fa fa-xmark fa-fw" aria-hidden="true"></i>
+              </button>
+            </div>
+          </div>
+          <div
+            class="popover-region-content-container"
+            data-region="popover-region-content-container"
+          >
+            <div
+              class="popover-region-content"
+              data-region="popover-region-content"
+            >
+              <div
+                class="all-notifications"
+                data-region="all-notifications"
+                role="log"
+                aria-busy="false"
+                aria-atomic="false"
+                aria-relevant="additions"
+              >
+              </div>
+              <div
+                class="empty-message"
+                tabindex="0"
+                data-region="empty-message"
+              >
+                You have no notifications
+              </div>
+            </div>
+            <span class="loading-icon icon-no-margin">
+              <i
+                class="icon fa fa-spinner fa-spin fa-fw"
+                title="Loading"
+                role="img"
+                aria-label="Loading"></i>
+            </span>
+          </div>
+          <a
+            class="see-all-link"
+            href={`${siteUrl}/message/output/popup/notifications.php`}
+          >
+            <div class="popover-region-footer-container">
+              <div class="popover-region-seeall-text">See all</div>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <!-- User account menu -->
+      <div
+        class="d-flex align-items-stretch usermenu-container"
+        data-region="usermenu"
+      >
+        <div class="usermenu">
+          <div
+            class="action-menu moodle-actionmenu nowrap-items"
+            id="action-menu-0"
+            data-enhance="moodle-core-actionmenu"
+          >
+            <div class="menubar d-flex" id="action-menu-0-menubar">
+              <div class="action-menu-trigger">
+                <div class="dropdown">
+                  <a
+                    href="#"
+                    tabindex="0"
+                    class="nav-link dropdown-toggle icon-no-margin"
+                    id="action-menu-toggle-0"
+                    aria-label="User menu"
+                    data-bs-toggle="dropdown"
+                    role="button"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                    aria-controls="action-menu-0-menu"
+                  >
+                    <span class="userbutton">
+                      <span class="usertext me-1">{userName}</span>
+                      <span class="avatars">
+                        <span class="avatar current">
+                          <span
+                            class="userinitials size-35"
+                            title={userName}
+                            aria-label={userName}
+                            role="img">NM</span
+                          >
+                        </span>
+                      </span>
+                    </span>
+                    <b class="caret"></b>
+                  </a>
+                  <div
+                    class="dropdown-menu menu dropdown-menu-end"
+                    id="action-menu-0-menu"
+                    data-rel="menu-content"
+                    aria-labelledby="action-menu-toggle-0"
+                    role="menu"
+                  >
+                    <a
+                      href={`${siteUrl}/user/profile.php`}
+                      class="dropdown-item menu-action"
+                      role="menuitem"
+                      tabindex="-1"
+                    >
+                      <span class="menu-action-text">Profile</span>
+                    </a>
+                    <div class="dropdown-divider" role="presentation">
+                      <span class="filler">&nbsp;</span>
+                    </div>
+                    <a
+                      href={`${siteUrl}/grade/report/overview/index.php`}
+                      class="dropdown-item menu-action"
+                      role="menuitem"
+                      tabindex="-1"
+                    >
+                      <span class="menu-action-text">Grades</span>
+                    </a>
+                    <a
+                      href={`${siteUrl}/user/files.php`}
+                      class="dropdown-item menu-action"
+                      role="menuitem"
+                      tabindex="-1"
+                    >
+                      <span class="menu-action-text">Private files</span>
+                    </a>
+                    <a
+                      href={`${siteUrl}/reportbuilder/index.php`}
+                      class="dropdown-item menu-action"
+                      role="menuitem"
+                      tabindex="-1"
+                    >
+                      <span class="menu-action-text">Reports</span>
+                    </a>
+                    <div class="dropdown-divider" role="presentation">
+                      <span class="filler">&nbsp;</span>
+                    </div>
+                    <a
+                      href={`${siteUrl}/user/preferences.php`}
+                      class="dropdown-item menu-action"
+                      role="menuitem"
+                      tabindex="-1"
+                    >
+                      <span class="menu-action-text">Preferences</span>
+                    </a>
+                    <div class="dropdown-divider" role="presentation">
+                      <span class="filler">&nbsp;</span>
+                    </div>
+                    <a
+                      href="/login"
+                      class="dropdown-item menu-action logout-link"
+                      role="menuitem"
+                      tabindex="-1"
+                      onclick="if(window.MockAuth) { window.MockAuth.logout(); return false; }"
+                    >
+                      <span class="menu-action-text">Log out</span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>

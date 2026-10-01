@@ -1,0 +1,124 @@
+---
+// Layout.astro — root layout mirroring Home | frontpage.html structure
+//
+// <html>
+//   <head>  — meta, stylesheets, Moodle JS config
+//   <body>
+//     <div#page-wrapper>
+//       skip-link
+//       <Navbar />        fixed-top nav (HTML lines 51–214)
+//       <div#page>
+//         <PageHeader />  title + breadcrumb card (lines 217–260)
+//         <div#page-content>
+//           <slot />      page-specific content
+//         </div>
+//       </div>
+//       <Footer />        dark footer (lines 933–1064)
+//     </div>
+//   </body>
+// </html>
+
+import Navbar from '../components/Navbar.astro';
+import PageHeader from '../components/PageHeader.astro';
+import Footer from '../components/Footer.astro';
+
+interface Props {
+  title?: string;
+  pageTitle?: string;
+  breadcrumbs?: Array<{ label: string; href: string; current?: boolean }>;
+  bodyClass?: string;
+  siteUrl?: string;
+  userName?: string;
+  userId?: number;
+  sesskey?: string;
+  faviconUrl?: string;
+  logoUrl?: string;
+}
+
+const {
+  title = "Home | frontpage",
+  pageTitle = "Site home",
+  breadcrumbs = [{ label: "Home", href: "/", current: true }],
+  bodyClass = "limitedwidth format-site course path-site chrome dir-ltr lang-en yui-skin-sam yui3-skin-sam lms-astanait-edu-kz pagelayout-frontpage course-1 context-2 theme",
+  siteUrl = "",
+  userName = "Nurzhan Muratkhan",
+  userId = 20033,
+  sesskey = "OYML9ERAvF",
+  faviconUrl = "https://lms.astanait.edu.kz/pluginfile.php/1/core_admin/favicon/64x64/1788154519/logo%20AITU%28imageonly%29.png",
+  logoUrl = "https://lms.astanait.edu.kz/pluginfile.php/1/core_admin/logocompact/300x300/1788154519/logo%20AITU%28imageonly%29.png",
+} = Astro.props;
+---
+
+<!DOCTYPE html>
+<html dir="ltr" lang="en" xml:lang="en">
+<head>
+    <title>{title}</title>
+    <link rel="shortcut icon" href={faviconUrl} />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content={`moodle, ${title}`} />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Moodle theme stylesheets -->
+    <link rel="stylesheet" type="text/css" href="https://lms.astanait.edu.kz/theme/yui_combo.php?rollup/3.18.1/yui-moodlesimple-min.css" />
+    <script id="firstthemesheet" type="text/css">/** Required in order to fix style inclusion problems in IE with YUI **/</script>
+    <link rel="stylesheet" type="text/css" href="https://lms.astanait.edu.kz/theme/styles.php/classic/1788154519_1759344148/all" />
+    
+    <script is:inline src="/mock-auth.js"></script>
+    <script is:inline>
+      if (window.MockAuth) {
+        window.MockAuth.requireAuth();
+      }
+    </script>
+</head>
+
+<body id="page-site-index" class={`${bodyClass} jsenabled`}>
+
+<div id="page-wrapper" class="d-print-block">
+
+    <div>
+        <a class="visually-hidden-focusable" href="#maincontent">Skip to main content</a>
+    </div>
+
+    <!-- Moodle core JS (kept from source) -->
+    <script src="https://lms.astanait.edu.kz/lib/javascript.php/1788154519/lib/polyfills/polyfill.js"></script>
+    <script src="https://lms.astanait.edu.kz/theme/yui_combo.php?rollup/3.18.1/yui-moodlesimple-min.js"></script>
+    <script src="https://lms.astanait.edu.kz/lib/javascript.php/1788154519/lib/javascript-static.js"></script>
+
+    <Navbar siteUrl={siteUrl} logoUrl={logoUrl} userName={userName} userId={userId} sesskey={sesskey} />
+
+    <div id="page" class="container-fluid d-print-block">
+
+        <PageHeader pageTitle={pageTitle} breadcrumbs={breadcrumbs} />
+
+        <div id="page-content" class="d-flex flex-wrap blocks-pre blocks-post d-print-block">
+            <slot />
+        </div>
+
+    </div>
+
+    <Footer siteUrl={siteUrl} userName={userName} userId={userId} sesskey={sesskey} />
+
+</div>
+
+<!-- Moodle RequireJS bootstrap -->
+<script>
+var require = {
+    baseUrl: 'https://lms.astanait.edu.kz/lib/requirejs.php/1788154519/',
+    enforceDefine: true,
+    skipDataMain: true,
+    waitSeconds: 0,
+    paths: {
+        jquery: 'https://lms.astanait.edu.kz/lib/javascript.php/1788154519/lib/jquery/jquery-3.7.1.min',
+        jqueryui: 'https://lms.astanait.edu.kz/lib/javascript.php/1788154519/lib/jquery/ui-1.14.1/jquery-ui.min',
+        jqueryprivate: 'https://lms.astanait.edu.kz/lib/javascript.php/1788154519/lib/requirejs/jquery-private'
+    },
+    map: {
+        '*': { jquery: 'jqueryprivate' },
+        'jqueryprivate': { jquery: 'jquery' }
+    }
+};
+</script>
+<script src="https://lms.astanait.edu.kz/lib/javascript.php/1788154519/lib/requirejs/require.min.js"></script>
+
+</body>
+</html>
