@@ -4,6 +4,9 @@
 
 Open on [https://ict-week-2-moodle.nurzhanmuratkhan.workers.dev](https://ict-week-2-moodle.nurzhanmuratkhan.workers.dev)
 
+or Scan
+---
+
 ## Quick Start
 
 ```sh
